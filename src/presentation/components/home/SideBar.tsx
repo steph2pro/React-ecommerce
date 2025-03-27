@@ -1,10 +1,9 @@
-import {BoxArrowLeft, HouseGear,} from "react-bootstrap-icons"
+import {BoxArrowLeft, HouseGear,People, FileBarGraph, PersonBadge, Gear } from "react-bootstrap-icons"
 import React, {PropsWithChildren, ReactNode} from "react"
-import {UserPorps} from "../../../data/models";
 import {useLocation, useNavigate,} from "react-router-dom";
 import {STRING_ROUTE_HOME, STRING_ROUTE_OUT} from "../../utils/const.ts";
 
-export const NavBar: React.FC<{ user?: UserPorps }> = ({user}) => {
+export const  SideBar = () => {
 
     const route = useNavigate()
     const location = useLocation();
@@ -20,39 +19,30 @@ export const NavBar: React.FC<{ user?: UserPorps }> = ({user}) => {
                 route(STRING_ROUTE_OUT);
                 break;
             }
+            
         }
     }
 
     return (
-        <div
-            className="   lg:w-[20vw] lg:h-[100vh] bg-white  fixed z-100000 max-sm:max-lg:bottom-0 sm:bottom-0  max-sm:max-lg:border-t sm:border-t max-sm:max-lg:w-full sm:w-full flex flex-col   lg:px-10 lg:border-r-2">
-
-            <div className="flex-1 max-sm:max-lg:flex max-sm:max-lg:justify-evenly sm:justify-evenly sm:flex lg:block">
-
-                <div className="text-3xl font-bold text-center text-green-950 mb-7 max-sm:max-lg:hidden">E-Commerce
-                    SERVICE
-                </div>
-
+        
+    <div className="w-64 h-screen p-5 text-white bg-primary">
+      <nav className="mt-10">
 
                 <NavBarItem title="Dasboard" icon={<HouseGear/>} isActive={location.pathname == STRING_ROUTE_HOME} index={0}
+                            onClick={handleChangePage}/>
+                <NavBarItem title="user" icon={<People/>} isActive={location.pathname == STRING_ROUTE_OUT} index={2}
+                            onClick={handleChangePage}/>
+                <NavBarItem title="customers" icon={<PersonBadge/>} isActive={location.pathname == STRING_ROUTE_OUT} index={2}
+                            onClick={handleChangePage}/>
+                <NavBarItem title="reports" icon={<FileBarGraph/>} isActive={location.pathname == STRING_ROUTE_OUT} index={2}
+                            onClick={handleChangePage}/>
+                <NavBarItem title="settings" icon={<Gear/>} isActive={location.pathname == STRING_ROUTE_OUT} index={2}
                             onClick={handleChangePage}/>
                 <NavBarItem title="Logout" icon={<BoxArrowLeft/>} isActive={location.pathname == STRING_ROUTE_OUT} index={2}
                             onClick={handleChangePage}/>
 
-            </div>
-            {user && <div className="flex items-center py-4 mx-4 space-x-4 max-sm:max-lg:hidden sm:hidden lg:flex">
-
-                <div
-                    className="flex items-center justify-center w-10 h-10 overflow-hidden bg-green-900 border rounded-full">
-                    <span className="text-xl font-bold text-white">{user.email.substring(0, 1)}</span>
-                </div>
-                <span>
-                    {user.email}
-                </span>
-
-            </div>}
-
-        </div>
+           </nav>
+    </div>
     )
 }
 
@@ -65,10 +55,9 @@ export const NavBarItem: React.FC<PropsWithChildren<{
 }>> = ({icon, title, isActive = false, onClick, index}) => {
     return (
         <div onClick={() => onClick(index)}
-             className={`flex items-center max-sm:max-lg:justify-evenly sm:justify-evenly lg:justify-start  px-4 mx-2 my-5 py-3 space-x-4 hover:cursor-pointer ${isActive ? "bg-green-950 text-white rounded-xl" : null}`}>
+             className={`flex items-center max-sm:max-lg:justify-evenly sm:justify-evenly lg:justify-start  px-2 mx-0 my-5 py-3 space-x-4 hover:bg-white hover:text-texthover hover:rounded-md ${isActive ? "bg-white text-texthover rounded-md" : null}`}>
 
             {icon}
-
             <span className="max-sm:max-lg:hidden sm:hidden lg:block">{title}</span>
         </div>
     )

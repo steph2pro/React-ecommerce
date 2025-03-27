@@ -1,16 +1,21 @@
-import  {NavBar} from "../components/home/SideBar.tsx";
+
 import ErrorBoundary from "../components/ErrorBoundary.tsx";
 import {Outlet} from "react-router-dom";
+import NavBar  from "../components/Navbar.tsx";
+import { SideBar } from "../components/home/SideBar.tsx";
 
 function Home() {
 
 
 
     return (
-        <div className="flex ">
+        <>
+            <NavBar/>
+         <div className="flex ">
 
-            <NavBar  user={({username: "Stephane Kamga", password: "12345678", email: "steph.contact@gmail.com"})} />
-
+            {/* <NavBar  user={({username: "Stephane Kamga", password: "12345678", email: "steph.contact@gmail.com"})} /> */}
+            <SideBar />
+            {/* <div>tes</div> */}
             <ErrorBoundary>
 
                 <div className="lg:ml-[20vw] sm:p-4  max-sm:max-lg:overflow-y-scroll lg:max-w-[80vw] flex-1">
@@ -21,7 +26,9 @@ function Home() {
                 </div>
             </ErrorBoundary>
         </div>
-    )
+    
+        </>
+    ) 
 }
 export default Home
 
