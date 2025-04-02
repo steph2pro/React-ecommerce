@@ -45,15 +45,15 @@ export const SideBar = () => {
 
     return (
 
-        <div className="w-64 h-screen p-5 text-white bg-primary mt-5 fixed" >
+        <div className="fixed w-64 h-screen p-5 mt-5 text-white bg-primary" >
             <nav className="mt-10">
 
                 <NavBarItem title="Dasboard" icon={<HouseGear />} isActive={location.pathname == STRING_ROUTE_HOME} index={3}
                     onClick={handleChangePage} />
-                <NavBarItem title="user" icon={<People />} isActive={location.pathname == STRING_ROUTE_REGISTER} index={6}
+                {/* <NavBarItem title="user" icon={<People />} isActive={location.pathname == STRING_ROUTE_REGISTER} index={6}
                     onClick={handleChangePage} />
                 <NavBarItem title="login" icon={<People />} isActive={location.pathname == STRING_ROUTE_CONNEXION} index={2}
-                    onClick={handleChangePage} />
+                    onClick={handleChangePage} /> */}
                 <NavBarItem title="coupon" icon={<People />} isActive={location.pathname == STRING_ROUTE_COUPON} index={5}
                     onClick={handleChangePage} />
                 <NavBarItem title="categorie" icon={<PersonBadge />} isActive={location.pathname == STRING_ROUTE_CATEGORIE} index={3}

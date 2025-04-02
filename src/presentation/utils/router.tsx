@@ -10,10 +10,15 @@ import Coupon from "../pages/Coupon.tsx";
 import Register from "../pages/Register.tsx";
 
 const router = createBrowserRouter([
-    // {
-    //     path: STRING_ROUTE_LOGING,
-    //     element: <Connexion />,
-    // },
+    
+    {
+        path: STRING_ROUTE_CONNEXION,
+        element: <Connexion />
+    },
+    {
+        path: STRING_ROUTE_REGISTER,
+        element: <Register />
+    },
     {
         path: STRING_ROUTE_HOME,
         element: <Home />,
@@ -22,10 +27,6 @@ const router = createBrowserRouter([
                 // path: STRING_ROUTE_DASHBOARD,
                 element: <Dashboard />,
                 index: true
-            },
-            {
-                path: STRING_ROUTE_CONNEXION,
-                element: <Connexion />
             },
             {
                 path: STRING_ROUTE_CATEGORIE,
@@ -39,10 +40,6 @@ const router = createBrowserRouter([
             {
                 path: STRING_ROUTE_COUPON,
                 element: <Coupon />
-            },
-            {
-                path: STRING_ROUTE_REGISTER,
-                element: <Register />
             },
             // {
             //     path: STRING_ROUTE_TEST,
