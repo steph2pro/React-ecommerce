@@ -2,7 +2,7 @@ import CardStats from "../components/CardStats";
 
 const Dashboard = () => {
   return (
-    <div className="p-6">
+    <div className="p-2 fixed top-75 left-80 mt-12 z-80">
       <h2 className="text-3xl font-bold">Dashboard</h2>
       <div className="grid grid-cols-4 gap-4 my-6">
         <CardStats title="Total Sales" value="$10.54K" color="bg-yellow-500" />
