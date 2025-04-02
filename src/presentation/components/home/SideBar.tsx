@@ -1,7 +1,7 @@
 import { BoxArrowLeft, HouseGear, People, FileBarGraph, PersonBadge, Gear } from "react-bootstrap-icons"
 import React, { PropsWithChildren, ReactNode } from "react"
 import { useLocation, useNavigate, } from "react-router-dom";
-import { STRING_ROUTE_HOME, STRING_ROUTE_OUT, STRING_ROUTE_CATEGORIE, STRING_ROUTE_ORDERS, STRING_ROUTE_COUPON } from "../../utils/const.ts";
+import { STRING_ROUTE_HOME, STRING_ROUTE_OUT, STRING_ROUTE_CATEGORIE, STRING_ROUTE_ORDERS, STRING_ROUTE_COUPON,STRING_ROUTE_REGISTER ,STRING_ROUTE_CONNEXION} from "../../utils/const.ts";
 
 export const SideBar = () => {
 
@@ -16,7 +16,7 @@ export const SideBar = () => {
             }
             case 2:
                 {
-                    route(STRING_ROUTE_OUT);
+                    route(STRING_ROUTE_CONNEXION);
                     break;
                 }
             case 3:
@@ -34,6 +34,11 @@ export const SideBar = () => {
                     route(STRING_ROUTE_COUPON);
                     break;
                 }
+            case 6:
+                {
+                    route(STRING_ROUTE_REGISTER);
+                    break;
+                }
 
         }
     }
@@ -45,7 +50,9 @@ export const SideBar = () => {
 
                 <NavBarItem title="Dasboard" icon={<HouseGear />} isActive={location.pathname == STRING_ROUTE_HOME} index={3}
                     onClick={handleChangePage} />
-                <NavBarItem title="user" icon={<People />} isActive={location.pathname == STRING_ROUTE_OUT} index={2}
+                <NavBarItem title="user" icon={<People />} isActive={location.pathname == STRING_ROUTE_REGISTER} index={6}
+                    onClick={handleChangePage} />
+                <NavBarItem title="login" icon={<People />} isActive={location.pathname == STRING_ROUTE_CONNEXION} index={2}
                     onClick={handleChangePage} />
                 <NavBarItem title="coupon" icon={<People />} isActive={location.pathname == STRING_ROUTE_COUPON} index={5}
                     onClick={handleChangePage} />
