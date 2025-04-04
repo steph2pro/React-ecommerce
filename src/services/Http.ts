@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 
 const instance = axios.create({
-    baseURL: "https://jsonplaceholder.typicode.com",
+    baseURL: "http://127.0.0.1:8000/api",
 });
 
 type HTTPRequestConfig = AxiosRequestConfig;

@@ -3,7 +3,7 @@ const Navbar = () => {
   return (
     <div className="flex items-center justify-between p-2 text-white shadow-md bg-primary2 fixed top-0 left-0 w-full z-10">
       <div className="flex items-center justify-between">
-        <h1 className="mx-10 text-2xl font-bold">E-commerce App</h1>
+        <h1 className="mx-10 text-2xl font-bold"><span className="text-3xl text-blue-500">T</span>ech<span className="text-3xl text-blue-500">M</span> arket</h1>
         <div className="flex items-center p-2 rounded-md bg-primary2">
           <Search size={18} className="mr-2 text-white" />
           <input

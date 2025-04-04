@@ -1,8 +1,14 @@
-type UserPorps = {
-    id?: string,
-    username?: string,
-    email: string,
-    password: string
+type User = {
+    id?: number,
+    nom: string,
+    prenom: string,
+    password: string,
+    role?:string,
+    adresse:string,
+    sexe:string,
+    telephone:string,
+    image?:File,
+    email:string,
 }
 
-export default UserPorps;
+export default User;

@@ -1,12 +1,24 @@
 import React from 'react'
 import Input from '../components/Input'
-import R from '../../../public/assets/R.png'
-import F from '../../../public/assets/F.png'
-import ButtonSubmit from "../components/Button";
+import useregister from '../hook/users/UserRegister';
+import Button from '../components/Button';
 const Register = () => {
+    const [images, setImages] = React.useState([]);
+    const handleImageChange = (event) => {
+        const newImage = event.target.files[0]; // Récupérer l'image sélectionnée
+        if (newImage) {
+            setImages([...images, newImage]); // Ajouter la nouvelle image à la liste
+        }
+    };
+    const removeImage = (index) => {
+        const updatedImages = images.filter((_, i) => i !== index);
+        setImages(updatedImages);
+    };
+    
+    const { register, setValue, handleSubmit, onSubmit, errors, isCreating } = useregister();
   return (
     <>
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)} >
 
         <div className="bg-gray-100  flex flex-col content-center items-center justify-center h-[180vh] mt-8">
 
@@ -18,37 +30,61 @@ const Register = () => {
             <div>
 
             <div >
-                <Input type="text" placeholder="Votre nom " />
+                <Input type="text" placeholder="Votre nom " 
+                {...register("nom")} />
+                {errors.nom?.message && <p className="text-sm text-red-500">{errors.nom.message}</p>}
             </div>
 
             <div>
             
-                <Input type="text" placeholder="Votre Prenom " />
+                <Input type="text" placeholder="Votre Prenom "  {...register("prenom")} />
+                {errors.prenom?.message && <p className="text-sm text-red-500">{errors.prenom.message}</p>}
             </div>
             <div>
             
-                <Input type="file" placeholder="Votre profile " />
+                <Input type="file" placeholder="Votre profile " onVolumeChange={(e)=>setValue("image", e.target.files?.[0]|| null)} {...register("image")}  multiple/>
             </div>
+             {/* test */}
             <div>
             
-                <Input type="text" placeholder="Votre sexe" />
+                <Input type="file"  onChange={handleImageChange} // Gère la sélection d'une image
+               accept="image/*"/>
+            </div>
+            <div  className='space-x-2 flex'>
+             {images.map((image, index) => (
+            <div key={index} className='space-x-2'>
+                <span>{image.name}</span>
+                <button type="button" onClick={() => removeImage(index)} className='bg-blue-600 text-white rounded-lg p-2 text-sm'>X</button>
+            </div>
+              ))}
+         </div>
+
+            {/* fin test */}
+            <div>
+            
+                <Input type="text" placeholder="Votre sexe"   {...register("sexe")} />
+                {errors.sexe?.message && <p className="text-sm text-red-500">{errors.sexe.message}</p>}
             </div>
             <div>
 
-                <Input type="text" placeholder="Votre Adresse" />
+                <Input type="text" placeholder="Votre Adresse"   {...register("adresse")} />
+                {errors.adresse?.message && <p className="text-sm text-red-500">{errors.adresse.message}</p>}
             </div>
             <div>
-                <Input type="email" placeholder="Email" />
+                <Input type="email" placeholder="Email" {...register("email")} />
+                {errors.email?.message && <p className="text-sm text-red-500">{errors.email.message}</p>}
             </div>
             <div>
-                <Input type="text" placeholder="Telephone" />
+                <Input type="text" placeholder="Telephone"{...register("telephone")} />
+                {errors.telephone?.message && <p className="text-sm text-red-500">{errors.telephone.message}</p>}
             </div>
             <div>
-                <Input type="password" placeholder="Password" />
+                <Input type="password" placeholder="Password" {...register("password")} />
+                {errors.password?.message && <p className="text-sm text-red-500">{errors.password.message}</p>}
             </div>
                 
                 <div className="w-full my-8 ">
-                    <ButtonSubmit  className=' bg-custom_blue'> Create An Aount</ButtonSubmit>
+                   <Button>Create Account</Button>
 
                 </div>
                 <div className="m-3 text-center text-custom-color-text ">

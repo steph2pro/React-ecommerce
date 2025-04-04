@@ -6,3 +6,5 @@ export const STRING_ROUTE_CATEGORIE = '/categorie';
 export const STRING_ROUTE_ORDERS = ' /Orders';
 export const STRING_ROUTE_COUPON = '/Coupon';
 export const STRING_ROUTE_REGISTER = '/register';
+export const TRING_ROUTE_LISTPRODUIT = '/product_list';
+export const TRING_ROUTE_ADD = '/product_add';
