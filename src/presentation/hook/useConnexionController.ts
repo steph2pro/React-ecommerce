@@ -32,9 +32,10 @@ function useConnexionController() {
 
 
     const onSubmit = async (data: UserPorps) => {
+        console.log('test..........');
         if (login.isLoading) return;
         await login.mutateAsync(data)
-        navigate(STRING_ROUTE_HOME)
+        // navigate(STRING_ROUTE_HOME)
     };
 
     return {
