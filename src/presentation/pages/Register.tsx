@@ -3,17 +3,17 @@ import Input from '../components/Input'
 import useregister from '../hook/users/UserRegister';
 import Button from '../components/Button';
 const Register = () => {
-    const [images, setImages] = React.useState([]);
-    const handleImageChange = (event) => {
-        const newImage = event.target.files[0]; // Récupérer l'image sélectionnée
-        if (newImage) {
-            setImages([...images, newImage]); // Ajouter la nouvelle image à la liste
-        }
-    };
-    const removeImage = (index) => {
-        const updatedImages = images.filter((_, i) => i !== index);
-        setImages(updatedImages);
-    };
+    // const [images, setImages] = React.useState([]);
+    // const handleImageChange = (event) => {
+    //     const newImage = event.target.files[0]; // Récupérer l'image sélectionnée
+    //     if (newImage) {
+    //         setImages([...images, newImage]); // Ajouter la nouvelle image à la liste
+    //     }
+    // };
+    // const removeImage = (index) => {
+    //     const updatedImages = images.filter((_, i) => i !== index);
+    //     setImages(updatedImages);
+    // };
     
     const { register, setValue, handleSubmit, onSubmit, errors, isCreating } = useregister();
   return (
@@ -45,7 +45,7 @@ const Register = () => {
                 <Input type="file" placeholder="Votre profile " onVolumeChange={(e)=>setValue("image", e.target.files?.[0]|| null)} {...register("image")}  multiple/>
             </div>
              {/* test */}
-            <div>
+            {/* <div>
             
                 <Input type="file"  onChange={handleImageChange} // Gère la sélection d'une image
                accept="image/*"/>
@@ -57,7 +57,7 @@ const Register = () => {
                 <button type="button" onClick={() => removeImage(index)} className='bg-blue-600 text-white rounded-lg p-2 text-sm'>X</button>
             </div>
               ))}
-         </div>
+         </div> */}
 
             {/* fin test */}
             <div>
