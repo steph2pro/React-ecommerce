@@ -23,7 +23,7 @@ export default class UserNetworkServiceImpl implements UserNetworkService {
             },
         });
         return res.data;
-        console.log(data);
+       
         
     }
    

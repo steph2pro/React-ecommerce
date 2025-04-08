@@ -27,6 +27,8 @@ export default class ProductNetworkServiceImpl implements ProductNetworkService{
             "Content-Type":"multipart/form-data",
            },
         });
+       
         return res.data;
+        // console.log(res.data);
     }
 }

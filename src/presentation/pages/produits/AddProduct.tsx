@@ -11,7 +11,7 @@ const { catQuery } = useCategories();
   const categories = allCategories || [];
   
   const [images, setImages] = React.useState([]);
-  console.log(images);
+  // console.log(images);
   const handleImageChange = (event) => {
     const newImage = event.target.files[0]; // Récupérer l'image sélectionnée
     if (newImage) {
@@ -60,7 +60,7 @@ const { catQuery } = useCategories();
                     
           <div>
             <Input type="file" {...register("image")} onChange={handleImageChange} // Gère la sélection d'une image
-           accept="image/*"  />
+           accept="image/*"  onVolumeChange={(e)=>setValue("image", e.target.files[0]?.[0]|| null)} />
         </div>
 
         <div  className='space-x-2 flex'>
@@ -80,6 +80,11 @@ const { catQuery } = useCategories();
           <div>
             <label htmlFor="">Prix d'achat</label>
             <Input type="number"  {...register("prix_achat")} />
+            {errors.prix_achat?.message && <p className="text-sm text-red-500">{errors.prix_achat.message}</p>}
+          </div>
+          <div>
+            <label htmlFor="">User id</label>
+            <Input type="number"  {...register("user_id")} />
             {errors.prix_achat?.message && <p className="text-sm text-red-500">{errors.prix_achat.message}</p>}
           </div>
           <div>
