@@ -12,6 +12,7 @@ console.log(getAllCat.data);
     };
 }
 
+
 export default useCategories;
 
 

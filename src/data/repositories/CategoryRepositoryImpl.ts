@@ -24,5 +24,7 @@ export default class CategoruRepositoryImpl implements CategoruRepository {
     }
     async deleteCategory(categoryId: number): Promise<string> {
         return  this.dataSource.deleteCategory(categoryId)
+
     }
-}
+
+    }

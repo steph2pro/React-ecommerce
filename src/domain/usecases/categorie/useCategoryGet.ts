@@ -13,6 +13,7 @@ export const useGetCategoryById = (
     async () => await repository.getCategoryById(categoryId),
     {
       onSuccess: () => {
+
         notify.success("Category  fetched successfully!");
       },
       onError: () => {
@@ -22,3 +23,4 @@ export const useGetCategoryById = (
     }
   );
 };
+

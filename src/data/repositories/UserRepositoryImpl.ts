@@ -10,11 +10,17 @@ export default class UserRepositoryImpl implements UserRepository {
         this.dataSource = dataSource;
     }
 
-   
-
     async register(user: User): Promise<User> {
         return await this.dataSource.register(user);
-    }
+    }
+
+    // async login(data: UserPorps): Promise<UserPorps> {
+    //     return await this.dataSource.login(data);
+    // }
+
+    // async logout(user: UserPorps): Promise<UserPorps> {
+    //     return await this.dataSource.logout(user);
+    // }
 
 
 } // async getUsers(): Promise<UserPorps[]> {

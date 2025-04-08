@@ -9,7 +9,9 @@ const AddProduct = () => {
 const { catQuery } = useCategories();
   const { data: allCategories } = catQuery;
   const categories = allCategories || [];
-  
+
+
+
   const [images, setImages] = React.useState([]);
   // console.log(images);
   const handleImageChange = (event) => {
@@ -60,7 +62,7 @@ const { catQuery } = useCategories();
                     
           <div>
             <Input type="file" {...register("image")} onChange={handleImageChange} // Gère la sélection d'une image
-           accept="image/*"  onVolumeChange={(e)=>setValue("image", e.target.files[0]?.[0]|| null)} />
+           accept="image/*"  onVolumeChange={(e)=>setValue("image", e.target.files?.[0]|| null)} />
         </div>
 
         <div  className='space-x-2 flex'>
@@ -95,13 +97,21 @@ const { catQuery } = useCategories();
           <div className='space-x-3 flex flex-col'>
           <label htmlFor="">Categorie</label>
           <select name="categorie" id="categorie" className='p-2 m-4 border border-gray-500 rounded-lg'>
+
             <option value="" {...register("categorie_id")}>-- Sélectionner une catégorie --</option>
+
+            <option value="">-- Sélectionner une catégorie --</option>
+
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
                 {category.intitule}
               </option>
             ))}
+
           </select>
+
+      
+
           </div>
           <Button>Save</Button>
         </form>
@@ -110,5 +120,6 @@ const { catQuery } = useCategories();
   </>
    )
 }
+
 
 export default AddProduct

@@ -1,4 +1,5 @@
 type User = {
+
     id?: number,
     nom: string,
     prenom: string,
@@ -7,7 +8,7 @@ type User = {
     adresse:string,
     sexe:string,
     telephone:string,
-    image?:File,
+    image?:File[],
     email:string,
 }
 

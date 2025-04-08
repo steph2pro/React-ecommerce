@@ -14,13 +14,17 @@ export const useUpdateCategory = (repository: CategoryRepositoryImpl) => {
       ),
     {
       onSuccess: (updatedcategory) => {
-        notify.success("Category updated successfully!");
+
+        notify.success(`Category updated successfully!`);
+
         // Invalidate queries related to Category to refresh data
         queryClient.invalidateQueries(["category", updatedcategory.id]);
       },
       onError: () => {
         notify.error("Failed to update Category.");
       },
+
     }
   );
 };
+

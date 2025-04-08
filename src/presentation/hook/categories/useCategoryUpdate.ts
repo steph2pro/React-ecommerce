@@ -62,4 +62,6 @@ const useCategoryUpdate = () => {
   };
 };
 
+
 export default useCategoryUpdate;
+

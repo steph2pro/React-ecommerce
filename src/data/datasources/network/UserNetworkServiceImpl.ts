@@ -3,7 +3,7 @@ import {Http} from "../../../services/Http.ts";
 import User from "../../models/User.ts";
 
 export default class UserNetworkServiceImpl implements UserNetworkService {
-
+    
 
     async register(user: User): Promise<User> {
         const formData = new FormData();
@@ -11,7 +11,7 @@ export default class UserNetworkServiceImpl implements UserNetworkService {
         // console.log(user.image[0])
         for (const key in user) {
 
-            if (key === "image" && user.image[0] instanceof File) {
+            if (key === "image" && user.images[0] instanceof File) {
                 formData.append("image", user.image[0]);
             }
             formData.append(key, user[key as keyof User] as any);
