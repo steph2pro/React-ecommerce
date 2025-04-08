@@ -33,7 +33,7 @@ const { register, handleSubmit,onSubmit, errors, isCreating,setValue, } = usereg
             </div>
             <div>
 
-                <Input type="file" placeholder="Votre profile " onVolumeChange={(e)=>setValue("image", e.target.files?.[0]|| null)} {...register("image")}/>
+                <Input type="file" placeholder="Votre profile " onVolumeChange={(e)=>setValue("images", e.target.files?.[0]|| null)} {...register("images")}/>
             </div>
              {/* test */}
             {/* <div>
@@ -51,12 +51,6 @@ const { register, handleSubmit,onSubmit, errors, isCreating,setValue, } = usereg
          </div> */}
 
             {/* fin test */}
-            <div>  
-            <Input type="file" placeholder="Votre profil" onChange={(e) => setValue("image", e.target.files?.[0] || null)}  {...register("image")}  
-  accept="image/*" />
-            </div>
-             
-            
 
             <div>
             
@@ -64,10 +58,12 @@ const { register, handleSubmit,onSubmit, errors, isCreating,setValue, } = usereg
 
                 {errors.sexe?.message && <p className="text-sm text-red-500">{errors.sexe.message}</p>}
             </div>
+
             <div>
                 <Input type="text" placeholder="Votre Adresse" {...register("adresse")} />
                 {errors.adresse?.message && <p className="text-sm text-red-500">{errors.adresse.message}</p>}
             </div>
+
             <div>
                 <Input type="email" placeholder="Email" {...register("email")}  />
                 {errors.email?.message && <p className="text-sm text-red-500">{errors.email.message}</p>}
@@ -79,19 +75,10 @@ const { register, handleSubmit,onSubmit, errors, isCreating,setValue, } = usereg
             <div>
                 <Input type="password" placeholder="Password" {...register("password")}  />
 
-                <Input type="text" placeholder="Votre Adresse"   {...register("adresse")} />
-                {errors.adresse?.message && <p className="text-sm text-red-500">{errors.adresse.message}</p>}
-            </div>
-           
-            <div>
-                <Input type="text" placeholder="Telephone"{...register("telephone")} />
-                {errors.telephone?.message && <p className="text-sm text-red-500">{errors.telephone.message}</p>}
-            </div>
-            <div>
-                <Input type="password" placeholder="Password" {...register("password")} />
-
                 {errors.password?.message && <p className="text-sm text-red-500">{errors.password.message}</p>}
             </div>
+           
+           
                 
                 <div className="w-full my-8 ">
                    <Button>Create Account</Button>

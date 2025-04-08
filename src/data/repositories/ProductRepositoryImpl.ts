@@ -9,7 +9,7 @@ export default class ProductRepositoryImpl implements ProductRepository {
         this.dataSource = dataSource
     }
 
-    async register(product: Product): Promise<Product> {
-        return this.dataSource.register(product)
-    }
+    async createProduct(product:Product):Promise<Product> {
+        return this.dataSource.createProduct(product)
+    }
 }

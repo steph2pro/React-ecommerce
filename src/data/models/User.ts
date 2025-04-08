@@ -8,7 +8,7 @@ type User = {
     adresse:string,
     sexe:string,
     telephone:string,
-    image?:File[],
+    images?:File[],
     email:string,
 }
 

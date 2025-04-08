@@ -17,12 +17,12 @@ const productSave = () => {
   const schema = Yup.object().shape({
     marque: Yup.string().required("La marque est requise"),
     description: Yup.string().required("la description est requise"),
-    quantite: Yup.string().required("la titquantitere est requise"),
-    prix_achat: Yup.string().required("Le prix d'achat est requis"),
+    quantite: Yup.string().required("la quantite est requise"),
+    prixachat: Yup.string().required("Le prix d'achat est requis"),
     prix_vente: Yup.string().required("Le prix de vente est requis"),
 
-    categorie_id: Yup.string().required("Le titre est requis"),
-  });
+    categorie_id: Yup.string().required("La categorie est requise"),
+  });
 
   // Initialisation de react-hook-form avec yupResolver
   const {
@@ -37,14 +37,16 @@ const productSave = () => {
 
   // Soumission du formulaire
   const onSubmit = async (data: Product) => {
-    // console.log(data.image);
+    data.user_id=1;
+    console.log(data);
+    console.log(data.user_id);
     if (createUser.isLoading) return;
 
     try {
       // Appel de la mutation avec les données du formulaire
       await createUser.mutateAsync(data);
 
-      // Navigation en cas de succès
+      // // Navigation en cas de succès
       navigate(STRING_ROUTE_HOME);
     } catch (error) {
       console.error("Erreur lors de la création de l'utilisateur :", error);

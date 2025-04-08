@@ -1,10 +1,10 @@
 type Product = {
     id?:number,
     marque:string,
-    image:File[],
+    images:File[],
     description:string,
     quantite:number,
-    prix_achat:number,
+    prixachat:number,
     prix_vente:number,
     type_operation?:string
     categorie_id:number,

@@ -10,10 +10,11 @@ export default class UserNetworkServiceImpl implements UserNetworkService {
         // console.log(user.image)
         // console.log(user.image[0])
         for (const key in user) {
-
-            if (key === "image" && user.images[0] instanceof File) {
-                formData.append("image", user.image[0]);
+            if (key === "image" && user.images?.[0] instanceof File) {
+                formData.append("image", user.images[0]);
             }
+            
+            
             formData.append(key, user[key as keyof User] as any);
         }
 

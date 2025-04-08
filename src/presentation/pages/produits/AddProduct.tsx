@@ -8,23 +8,26 @@ import productSave from '../../hook/products/useProductSave'
 const AddProduct = () => {
 const { catQuery } = useCategories();
   const { data: allCategories } = catQuery;
-  const categories = allCategories || [];
+  const categories = allCategories || [];
 
 
 
   const [images, setImages] = React.useState([]);
-  // console.log(images);
+ 
   const handleImageChange = (event) => {
-    const newImage = event.target.files[0]; // Récupérer l'image sélectionnée
-    if (newImage) {
-        setImages([...images, newImage]); // Ajouter la nouvelle image à la liste
+    const files = Array.from(event.target.files); // Convertir FileList en tableau
+    if (files.length > 0) {
+      const newImages = [...images, ...files];
+      setImages(newImages);
+      setValue("images", newImages); // Enregistre la liste dans react-hook-form
     }
   };
-  
   const removeImage = (index) => {
     const updatedImages = images.filter((_, i) => i !== index);
     setImages(updatedImages);
+    setValue("images", updatedImages); // Met à jour react-hook-form
   };
+  
   const { register, setValue, handleSubmit, onSubmit, errors, isCreating } =productSave();
   return (
 
@@ -37,16 +40,16 @@ const { catQuery } = useCategories();
       <div className='flex justify-between mt-4'>
         <h2 className='text-2xl font-bold'>Ajouter un article</h2>
 
-        <div className=' space-x-3 mr-16'>
+        <div className='mr-16 space-x-3 '>
           <button className='btn_save'>Liste des articles</button>
           
         </div>
       </div>
     </div>
-    <hr className='mt-4 border  border-black bg-blue-500' />
+    <hr className='mt-4 bg-blue-500 border border-black' />
 
-    <div className='mt-8  rounded-lg border border-white shadow-lg '>
-      <h2 className='text-2xl m-4 font-sans font-bold ml-8'>Information Du Produit</h2>
+    <div className='mt-8 border border-white rounded-lg shadow-lg '>
+      <h2 className='m-4 ml-8 font-sans text-2xl font-bold'>Information Du Produit</h2>
       <div className="w-[70%] m-4 p-4">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
@@ -60,19 +63,31 @@ const { catQuery } = useCategories();
             {errors.description?.message && <p className="text-sm text-red-500">{errors.description.message}</p>}
           </div>
                     
-          <div>
-            <Input type="file" {...register("image")} onChange={handleImageChange} // Gère la sélection d'une image
-           accept="image/*"  onVolumeChange={(e)=>setValue("image", e.target.files?.[0]|| null)} />
+          
+         <div>
+          <Input
+            type="file"
+            accept="images/*"
+            multiple
+            onChange={handleImageChange}
+          />
         </div>
 
-        <div  className='space-x-2 flex'>
-             {images.map((image, index) => (
-            <div key={index} className='space-x-2'>
-                <span>{image.name}</span>
-                <button type="button" onClick={() => removeImage(index)} className='bg-blue-600 text-white rounded-lg p-2 text-sm'>X</button>
+        <div className="flex flex-wrap gap-2 mt-4">
+          {images.map((image, index) => (
+            <div key={index} className="flex items-center gap-2 p-2 bg-gray-100 rounded-md">
+              <span className="text-sm">{image.name}</span>
+              <button
+                type="button"
+                onClick={() => removeImage(index)}
+                className="p-1 text-white bg-red-500 rounded-full"
+              >
+                X
+              </button>
             </div>
-              ))}
-         </div>
+          ))}
+        </div>
+
 
           <div>
             <label htmlFor="">Quantite</label>
@@ -81,37 +96,34 @@ const { catQuery } = useCategories();
           </div>
           <div>
             <label htmlFor="">Prix d'achat</label>
-            <Input type="number"  {...register("prix_achat")} />
-            {errors.prix_achat?.message && <p className="text-sm text-red-500">{errors.prix_achat.message}</p>}
+            <Input type="number"  {...register("prixachat")} />
+            {errors.prixachat?.message && <p className="text-sm text-red-500">{errors.prixachat.message}</p>}
           </div>
-          <div>
-            <label htmlFor="">User id</label>
-            <Input type="number"  {...register("user_id")} />
-            {errors.prix_achat?.message && <p className="text-sm text-red-500">{errors.prix_achat.message}</p>}
-          </div>
+        
           <div>
             <label htmlFor="">Prix de vente</label>
             <Input type="number" {...register("prix_vente")} />
             {errors.prix_vente?.message && <p className="text-sm text-red-500">{errors.prix_vente.message}</p>}
           </div>
-          <div className='space-x-3 flex flex-col'>
+          <div className='flex flex-col space-x-3'>
           <label htmlFor="">Categorie</label>
-          <select name="categorie" id="categorie" className='p-2 m-4 border border-gray-500 rounded-lg'>
-
-            <option value="" {...register("categorie_id")}>-- Sélectionner une catégorie --</option>
-
+          <select
+            {...register("categorie_id", { required: "La catégorie est obligatoire" })}
+            name="categorie_id"
+            id="categorie"
+            className="p-2 m-4 border border-gray-500 rounded-lg"
+          >
             <option value="">-- Sélectionner une catégorie --</option>
-
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
                 {category.intitule}
               </option>
             ))}
+          </select>
 
-          </select>
-
-      
-
+          {errors.categorie_id && (
+            <p className="text-sm text-red-500">{errors.categorie_id.message}</p>
+          )}
           </div>
           <Button>Save</Button>
         </form>

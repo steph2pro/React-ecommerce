@@ -8,7 +8,7 @@ export  const useProductSave = (repository:ProductRepositoryImpl)=>{
 
     return useMutation(
         async (product:Product)=>{
-            return await repository.addProduct(product);
+            return await repository.createProduct(product);
         },
        {
         onSuccess: ()=>{
@@ -17,6 +17,6 @@ export  const useProductSave = (repository:ProductRepositoryImpl)=>{
         onError:(error:Error)=>{
             notify.error(`echec d'enregistrement:${error.message}`);
         }
-       }
-    )
+       }
+    )
 }
