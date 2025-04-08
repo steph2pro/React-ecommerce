@@ -41,8 +41,7 @@ const Register = () => {
                 {errors.prenom?.message && <p className="text-sm text-red-500">{errors.prenom.message}</p>}
             </div>
             <div>
-            
-                <Input type="file" placeholder="Votre profile " onVolumeChange={(e)=>setValue("image", e.target.files?.[0]|| null)} {...register("image")}  multiple/>
+                <Input type="file" placeholder="Votre profile " onVolumeChange={(e)=>setValue("image", e.target.files?.[0]|| null)} {...register("image")}/>
             </div>
              {/* test */}
             {/* <div>

@@ -12,4 +12,17 @@ export default class CategoruRepositoryImpl implements CategoruRepository {
     async register(category: Category): Promise<Category> {
         return  this.dataSource.regiter(category)
     }
+
+    async  getCategorys(): Promise<Category[]> {
+        return  this.dataSource.getCategorys()
+    }
+    async getCategoryById(categoryId: number): Promise<Category> {
+        return  this.dataSource.getCategoryById(categoryId)
+    }
+    async updateCategory(category: Category): Promise<Category> {
+        return  this.dataSource.updateCategory(category)
+    }
+    async deleteCategory(categoryId: number): Promise<string> {
+        return  this.dataSource.deleteCategory(categoryId)
+    }
 }

@@ -2,10 +2,13 @@ import React from 'react'
 import { ArrowLeft } from 'react-bootstrap-icons'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
-
+import useCategories from '../../hook/categories/useCategories'
+import productSave from '../../hook/products/useProductSave'
 
 const AddProduct = () => {
-
+const { catQuery } = useCategories();
+  const { data: allCategories } = catQuery;
+  const categories = allCategories || [];
   
   const [images, setImages] = React.useState([]);
   console.log(images);
@@ -20,6 +23,7 @@ const AddProduct = () => {
     const updatedImages = images.filter((_, i) => i !== index);
     setImages(updatedImages);
   };
+  const { register, setValue, handleSubmit, onSubmit, errors, isCreating } =productSave();
   return (
 
  
@@ -42,19 +46,21 @@ const AddProduct = () => {
     <div className='mt-8  rounded-lg border border-white shadow-lg '>
       <h2 className='text-2xl m-4 font-sans font-bold ml-8'>Information Du Produit</h2>
       <div className="w-[70%] m-4 p-4">
-        <form action="">
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label htmlFor="">Marque</label>
-            <Input type="text" />
+            <Input type="text"  {...register("marque")} />
+            {errors.marque?.message && <p className="text-sm text-red-500">{errors.marque.message}</p>}
           </div>
           <div>
             <label htmlFor="">Description</label>
-            <Input type="text" />
+            <Input type="text"  {...register("description")} />
+            {errors.description?.message && <p className="text-sm text-red-500">{errors.description.message}</p>}
           </div>
                     
           <div>
-            <Input type="file"  onChange={handleImageChange} // Gère la sélection d'une image
-           accept="image/*"/>
+            <Input type="file" {...register("image")} onChange={handleImageChange} // Gère la sélection d'une image
+           accept="image/*"  />
         </div>
 
         <div  className='space-x-2 flex'>
@@ -68,25 +74,29 @@ const AddProduct = () => {
 
           <div>
             <label htmlFor="">Quantite</label>
-            <Input type="number" />
+            <Input type="number" {...register("quantite")} />
+            {errors.quantite?.message && <p className="text-sm text-red-500">{errors.quantite.message}</p>}
           </div>
           <div>
             <label htmlFor="">Prix d'achat</label>
-            <Input type="number" />
+            <Input type="number"  {...register("prix_achat")} />
+            {errors.prix_achat?.message && <p className="text-sm text-red-500">{errors.prix_achat.message}</p>}
           </div>
           <div>
             <label htmlFor="">Prix de vente</label>
-            <Input type="number" />
+            <Input type="number" {...register("prix_vente")} />
+            {errors.prix_vente?.message && <p className="text-sm text-red-500">{errors.prix_vente.message}</p>}
           </div>
           <div className='space-x-3 flex flex-col'>
           <label htmlFor="">Categorie</label>
-          <select name="" id="" className='p-2 m-4 border border-gray-500 rounded-lg'>
-            <option value="">Ordinateurs Portables</option>
-            <option value="">Telephone</option>
-            <option value="">Accessoires</option>
-            <option value="">Unite Centrale</option>
-            <option value="">Moniteur</option>
-          </select>
+          <select name="categorie" id="categorie" className='p-2 m-4 border border-gray-500 rounded-lg'>
+            <option value="" {...register("categorie_id")}>-- Sélectionner une catégorie --</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.intitule}
+              </option>
+            ))}
+          </select>
           </div>
           <Button>Save</Button>
         </form>
