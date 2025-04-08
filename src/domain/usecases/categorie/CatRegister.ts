@@ -1,22 +1,22 @@
 import { useMutation } from "@tanstack/react-query";
 import { useNotification } from "../../../services/useNotification";
-import UserRepositoryImpl from "../../../data/repositories/UserRepositoryImpl";
-import User from "../../../data/models/User";
+import CategoruRepositoryImpl from "../../../data/repositories/CategoryRepositoryImpl";
+import Category from "../../../data/models/Category";
 
 
 
-export const useRegister = (repository:UserRepositoryImpl) => {
+export const CatRegister = (repository:CategoruRepositoryImpl) => {
   const notify = useNotification();
 
   return useMutation(
-    async (user:User) => {
+    async (category:Category) => {
       // Appelle la méthode pour créer une User via le repository
-      return await repository.register(user);
+      return await repository.register(category);
     },
     {
       onSuccess: () => {
         // Affiche une notification de succès
-        notify.success("User créée avec succès !");
+        notify.success("Categorie créée avec succès !");
       },
       onError: (error: Error) => {
         // Affiche une notification d'erreur avec les détails

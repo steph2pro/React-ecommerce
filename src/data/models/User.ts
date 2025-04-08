@@ -1,15 +1,15 @@
 type User = {
-    id?:number,
+
+    id?: number,
     nom: string,
     prenom: string,
-    sexe: string,
-    adresse: string
-    telephone: string,
-    image?: File,
-    email: string,
     password: string,
-    role?:string
-
+    role?:string,
+    adresse:string,
+    sexe:string,
+    telephone:string,
+    image?:File[],
+    email:string,
 }
 
 export default User;

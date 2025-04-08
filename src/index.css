@@ -17,3 +17,11 @@
 body{
     font-family: Sunset, "Montserrat", "sans-serif";
 }
+
+.btn_cancel{
+    @apply bg-red-500 text-white rounded-md p-2
+}
+
+.btn_save{
+    @apply bg-blue-600 text-white rounded-md p-2
+}
