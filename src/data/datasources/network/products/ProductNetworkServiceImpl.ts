@@ -1,6 +1,7 @@
 import Product from "../../../models/Product";
 import ProductNetworkService from "./ProductNetworkService";
 import { Http } from "../../../../services/Http";
+import ProductResponse from "../../../models/ProductResponse";
 
 export default class ProductNetworkServiceImpl implements ProductNetworkService{
     async createProduct(product: Product): Promise<Product> {
@@ -30,5 +31,24 @@ export default class ProductNetworkServiceImpl implements ProductNetworkService{
     
         return res.data;
     }
+
+    async getProducts(): Promise<ProductResponse[]> {
+        const res = await Http.get<{articles :ProductResponse[]}>("articles")
+        return await res.data.articles
+    }
+
+    async getProductId(productId: number): Promise<ProductResponse> {
+        const res = await Http.get<ProductResponse>(`articles/${productId}`);
+        return await res.data;
+    }
     
+    async updateProduct(product: Product): Promise<Product> {
+        const res = await Http.put<Product>(`articles/${product.id}`,product);
+        return await res.data;
+    }
+
+    async deleteProduct(productId: number): Promise<string> {
+        const res = await Http.delete<string>(`articles/${productId}`);
+        return await res.data
+    }
 }

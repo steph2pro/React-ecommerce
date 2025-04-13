@@ -1,10 +1,9 @@
+import Login from "../../data/models/Login.ts";
 import User from "../../data/models/User.ts";
 
 
 export interface UserRepository{
-    // login(data: UserPorps): Promise<UserPorps>;
-    // logout(user: UserPorps): Promise<UserPorps>;
-    // getUsers(): Promise<UserPorps[]>;
     register(user: User): Promise<User>;
+    loginUser(login:Login):Promise<Login>
 }
 

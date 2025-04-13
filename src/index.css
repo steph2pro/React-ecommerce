@@ -9,6 +9,11 @@
 }
 
 @font-face {
+    font-family: 'Sunset Gothic';
+    src: url('/font/sunset-gothic-light-pro.ttf') format('truetype');
+}
+
+@font-face {
     font-family: Sunset;
     font-weight: bold;
     src: url(public/font/sunset-gothic-bold-pro.913a453.ttf);

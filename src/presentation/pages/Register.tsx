@@ -33,7 +33,7 @@ const { register, handleSubmit,onSubmit, errors, isCreating,setValue, } = usereg
             </div>
             <div>
 
-                <Input type="file" placeholder="Votre profile " onVolumeChange={(e)=>setValue("images", e.target.files?.[0]|| null)} {...register("images")}/>
+                <Input type="file" placeholder="Votre profile " onVolumeChange={(e)=>setValue("image", e.target.files?.[0]|| null)} {...register("image")}/>
             </div>
              {/* test */}
             {/* <div>

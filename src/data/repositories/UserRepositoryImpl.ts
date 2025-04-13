@@ -1,5 +1,6 @@
 import {UserRepository} from "../../domain/repositories/UserRepository.ts";
 import UserNetworkService from "../datasources/network/UserNetworkService.ts";
+import Login from "../models/Login.ts";
 import User from "../models/User.ts";
 
 export default class UserRepositoryImpl implements UserRepository {
@@ -13,7 +14,10 @@ export default class UserRepositoryImpl implements UserRepository {
     async register(user: User): Promise<User> {
         return await this.dataSource.register(user);
     }
-
+    
+    async loginUser(login: Login): Promise<Login> {
+        return await this.dataSource.loginUser(login);
+    }
     // async login(data: UserPorps): Promise<UserPorps> {
     //     return await this.dataSource.login(data);
     // }

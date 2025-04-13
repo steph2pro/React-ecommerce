@@ -11,7 +11,7 @@ export const useAddCategory = (repository: CategoryRepositoryImpl) => {
   return useMutation(
     async (category:Category) => {
       // Appelle la méthode pour créer une Category via le repository
-      return await repository.createCategory(category);
+      return await repository.register(category);
     },
     {
       onSuccess: () => {

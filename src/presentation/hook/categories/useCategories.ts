@@ -6,7 +6,7 @@ function useCategories() {
     const getAllCat = useGetAllCategories(
         new CategoryRepositoryImpl(new CategoryNetworkServiceImpl())
     );
-console.log(getAllCat.data);
+// console.log(getAllCat.data);
     return {
         catQuery: getAllCat,
     };
