@@ -1,13 +1,15 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { STRING_ROUTE_HOME } from "../../utils/const";
+import { STRING_ROUTE_DASHBOARD, STRING_ROUTE_HOME } from "../../utils/const";
+import { STRING_ROUTE_CATEGORIE } from "../../utils/const";
 import { useNavigate } from "react-router-dom";
 import UserRepositoryImpl from "../../../data/repositories/UserRepositoryImpl";
 import UserNetworkServiceImpl from "../../../data/datasources/network/UserNetworkServiceImpl";
 // import User from "../../../data/models/User";
 import Login from "../../../data/models/Login";
 import { loginUseCase } from "../../../domain/usecases/users/loginUseCase";
+import { useState } from "react";
 
 
 function useLoginHook() {
@@ -39,25 +41,33 @@ function useLoginHook() {
       setValue,
       formState: {errors},
   } = useForm<Login>({
-      resolver: yupResolver(schema),
       mode: "onTouched",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onSubmit = async (data: Login) => {
+      console.log("onSubmit déclenché avec les données :", data);
 
-          if (LoginUser.isLoading) return;
-      
+          if (isSubmitting || LoginUser.isLoading) {
+            console.log("Soumission bloquée (déjà en cours)");
+            return;
+          }
+          setIsSubmitting(true);
+
           try {
             // Appel de la mutation avec les données du formulaire
             // await createUser.mutateAsync(data);
-            await LoginUser.mutateAsync({
-              ...data,
-            });
+            const res = await LoginUser.mutateAsync(data);
+            // console.log("reponse",res);
+
             // Navigation en cas de succès
             navigate(STRING_ROUTE_HOME);
+            console.log(res)
           } catch (error) {
             console.error("Erreur lors de la connexion de l'utilisateur :", error);
+          }finally{
+            setIsSubmitting(false);
           }
   };
 

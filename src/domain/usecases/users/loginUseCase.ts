@@ -9,6 +9,7 @@ export const loginUseCase = (repository:UserRepositoryImpl)=>{
 
     return useMutation(
         async (login:Login)=>{
+            console.log("mutations executee avec les donnees",login)
             return  await repository.loginUser(login);
         },
         {

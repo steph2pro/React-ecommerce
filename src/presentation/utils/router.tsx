@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Connexion from "../pages/Connexion.tsx";
 import Home from "../pages/home.tsx";
 
-import { STRING_ROUTE_DASHBOARD, STRING_ROUTE_HOME,STRING_ROUTE_USER, STRING_ROUTE_CATEGORIE, STRING_ROUTE_ORDERS, STRING_ROUTE_COUPON,STRING_ROUTE_REGISTER,STRING_ROUTE_CONNEXION,TRING_ROUTE_LISTPRODUIT, TRING_ROUTE_ADD,STRING_ROUTE_PRODUCT_UPDATE,STRING_ROUTE_PRODUCT_DELETE} from "./const.ts";
+import {STRING_ROUTE_AUTH,STRING_ROUTE_DASHBOARD, STRING_ROUTE_HOME,STRING_ROUTE_USER, STRING_ROUTE_CATEGORIE, STRING_ROUTE_ORDERS, STRING_ROUTE_COUPON,STRING_ROUTE_REGISTER,STRING_ROUTE_CONNEXION,TRING_ROUTE_LISTPRODUIT, TRING_ROUTE_ADD,STRING_ROUTE_PRODUCT_UPDATE,STRING_ROUTE_PRODUCT_DELETE} from "./const.ts";
 
 import TestPage from "../pages/testPage.tsx";
 import Dashboard from "../pages/Dashboard.tsx";
@@ -14,7 +14,10 @@ import ListProduit from "../pages/produits/ListProduit.tsx";
 import AddProduct from "../pages/produits/AddProduct.tsx";
 import ProductEdit from "../pages/produits/ProductEdit.tsx";
 import DeleteProduct from "../pages/produits/DeleteProduct.tsx";
-import Index from "../pages/simple user/Index.tsx";
+import MainLayout from "../pages/simple user/MainLayout/MainLayout.tsx";
+import Auth from "../pages/simple user/Pages/Auth/Register/Auth.tsx";
+import Login from "../pages/simple user/Pages/Auth/Login/Login.tsx";
+import HomePage from "../pages/simple user/HomePage.tsx";
 
 const router = createBrowserRouter([
     
@@ -22,10 +25,29 @@ const router = createBrowserRouter([
         path: STRING_ROUTE_CONNEXION,
         element: <Connexion />
     },
+
     {
         path: STRING_ROUTE_USER,
-        element: <Index />
+        element: <MainLayout />,
+        children:[
+            {
+                path: 'auth',
+                element: <Auth />,
+                children:[
+                    {
+                        path: 'connect',
+                        element: <Login/>
+                    },
+                    {
+                        path: 'create_account',
+                        element: <Login/>
+                    }
+                ]
+            },
+         
+        ]
     },
+
     // {
     //     path: TRING_ROUTE_USER,
     //     element: <Home />

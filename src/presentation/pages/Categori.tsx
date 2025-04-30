@@ -4,6 +4,7 @@ import { faPlus, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import catregister from "../hook/categories/UseCategory";
+import { useLocation } from "react-router-dom";
 function Categorie() {
     const [categories, setCategories] = useState([
         { id: 1, name: "Catégorie 1", image: "public/assets/img.png" },
@@ -29,6 +30,9 @@ function Categorie() {
             setShowForm(false); // Masquer le formulaire après l'ajout
         }
     };
+    const location = useLocation(); // Récupère les données de navigation
+    const user = location.state?.user // Accède aux informations utilisateur (name, email, etc.)
+  
     const { register, setValue, handleSubmit, onSubmit, errors, isCreating } =catregister();
     return (
 
@@ -44,6 +48,13 @@ function Categorie() {
                     <FontAwesomeIcon icon={faPlus} /> Ajouter une Categorie
                 </button>
             </div>
+            {/* <div>
+          <p><strong>Nom :</strong> {user.nom}</p>
+          <p><strong>Email :</strong> {user.email}</p>
+          <p><strong>Adresse :</strong> {user.adresse}</p>
+          <p><strong>Téléphone :</strong> {user.telephone}</p>
+        </div> */}
+
 
             {/* Formulaire pour créer une catégorie */}
             {showForm && (
@@ -57,8 +68,9 @@ function Categorie() {
                     </form>
                    
                 </div>
+                
+                
             )}
-
             {/* Liste des catégories */}
             <div className="p-4 grid grid-cols-3 gap-4">
                 {categories.map((category) => (
@@ -84,10 +96,13 @@ function Categorie() {
                     </div>
                 ))}
             </div>
-
-           
+       
+                
         </div>
     );
 }
 
 export default Categorie;
+
+
+

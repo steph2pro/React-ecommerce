@@ -4,12 +4,13 @@ import R from '../../../public/assets/R.png'
 import F from '../../../public/assets/F.png'
 import 'react-toastify/dist/ReactToastify.css';
 import useLoginHook from "../hook/users/useLoginHook.ts";
-import useConnexionController from "../hook/useConnexionController.ts";
+// import useConnexionController from "../hook/useConnexionController.ts";
 
 
 export default function Connexion() {
     // const { onSubmit, register, handleSubmit, errors, loginQuery} = useConnexionController();
     const { register, handleSubmit,onSubmit, errors, isCreating,setValue, } = useLoginHook();
+    
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -32,7 +33,7 @@ export default function Connexion() {
                     </div>
                         
                         <div className="w-full my-8 ">
-                            <ButtonSubmit  className=' bg-custom_blue'> Login</ButtonSubmit>
+                            <button  className=' bg-custom_blue' disabled={isCreating}>  {isCreating ? "Connexion en cours..." : "Se connecter"}</button>
 
                         </div>
                         <div className="m-3 text-center text-custom-color-text ">
