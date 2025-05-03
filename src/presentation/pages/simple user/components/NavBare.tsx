@@ -95,7 +95,7 @@ const NavBare = () => {
         {/* navbar_bottom_right */}
 
         <div className="navbar_bottom_right">
-          <p className='text-sm text-[#636270] font-inter font-normal capitalize '>Contact <span className='text-[272343]'>(+237) 672259656</span></p>
+          <p className='text-sm text-[#636270] font-inter font-normal capitalize '>Contact <span className='text-[#272343]'>(+237) 672259656</span></p>
         </div>
       </div>
     </div>

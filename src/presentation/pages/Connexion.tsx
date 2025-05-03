@@ -33,7 +33,7 @@ export default function Connexion() {
                     </div>
                         
                         <div className="w-full my-8 ">
-                            <button  className=' bg-custom_blue' disabled={isCreating}>  {isCreating ? "Connexion en cours..." : "Se connecter"}</button>
+                            <ButtonSubmit  className=' bg-custom_blue' disabled={isCreating}>  {isCreating ? "Connexion en cours..." : "Se connecter"}</ButtonSubmit>
 
                         </div>
                         <div className="m-3 text-center text-custom-color-text ">
